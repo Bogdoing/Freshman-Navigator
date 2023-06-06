@@ -1,5 +1,6 @@
 package com.example.course2.dao.facPac;
 
+import com.example.course2.db.ConnectionDB;
 import com.example.course2.entity.Fac;
 
 import java.sql.*;
@@ -7,17 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FacDAOpg implements FacDAO{
-    private Connection connection;
-    private final String url = "jdbc:postgresql://localhost:5432/couremina";
-    private final String username = "postgres";
-    private final String password = "12qwaszx";
+    private final ConnectionDB connectionDB;
+    private final Connection connection;
 
-    public FacDAOpg() {
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    {
+        connectionDB = new ConnectionDB();
+        connection = connectionDB.getConnection();
     }
 
     @Override
@@ -42,12 +38,12 @@ public class FacDAOpg implements FacDAO{
         List<Fac> facList = new ArrayList<>();
         PreparedStatement ps = null;
         try {
-            ps = connection.prepareStatement("SELECT * FROM fac");
+            ps = connection.prepareStatement("SELECT name_f, adress, telefon, mail FROM fac");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Fac fac = new Fac();
                 System.out.println(rs);
-                fac.setId( rs.getInt("id"));
+                //fac.setId( rs.getInt("id"));
                 fac.setName_f(rs.getString("name_f"));
                 fac.setAdress(rs.getString("adress"));
                 fac.setTelefon(rs.getString("telefon"));
@@ -61,9 +57,13 @@ public class FacDAOpg implements FacDAO{
             throw new RuntimeException(e);
         }
 
+//        facList.stream()
+//                .forEach(fac -> System.out.println
+//                        ("DB  " + fac.getId() + " " + fac.getName_f() + " " + fac.getAdress() + " " + fac.getTelefon()  + " " + fac.getMail()));
+
         facList.stream()
                 .forEach(fac -> System.out.println
-                        ("DB  " + fac.getId() + " " + fac.getName_f() + " " + fac.getAdress() + " " + fac.getTelefon()  + " " + fac.getMail()));
+                        ("DB  " + fac.getName_f() + " " + fac.getAdress() + " " + fac.getTelefon()  + " " + fac.getMail()));
 
         return facList;
     }

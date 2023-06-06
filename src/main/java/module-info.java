@@ -2,6 +2,8 @@ module com.example.course2 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires javafx.web;
+    requires jdk.jsobject;
 
     opens com.example.course2.entity to javafx.base;
     exports com.example.course2.entity;

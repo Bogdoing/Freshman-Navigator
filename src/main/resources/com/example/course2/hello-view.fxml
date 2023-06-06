@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
 
 <GridPane minHeight="350" minWidth="450" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course2.HelloController">
  <columnConstraints>
@@ -19,16 +20,26 @@
      <tabs>
         <Tab text="Памятка первокурсника">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <WebView fx:id="webView" layoutX="100.0" layoutY="176.0" onMouseClicked="#WebViewClick" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     <Button layoutX="370.0" layoutY="287.0" mnemonicParsing="false" onAction="#goHome" text="Домой" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="14.0" />
+                     <TextField fx:id="TFurl" layoutX="14.0" layoutY="291.0" prefHeight="26.0" prefWidth="355.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="81.0" />
+                  </children>
+                </AnchorPane>
             </content>
         </Tab>
         <Tab text="Инфраструктура ВУЗа">
             <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="385.0">
                   <children>
-                     <TableView fx:id="TVfac" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
-                     <Button layoutX="280.0" layoutY="295.0" mnemonicParsing="false" onAction="#onGetDataButton" text="Button" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="280.0" />
-                  </children></AnchorPane>
+                     <Button layoutX="307.0" layoutY="14.0" mnemonicParsing="false" onAction="#onGetDataButton" text="Button" AnchorPane.rightAnchor="90.60000000000002" AnchorPane.topAnchor="14.0" />
+
+                     <TableView fx:id="TVfac" layoutY="55.0" prefHeight="269.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0" />
+                     <ComboBox fx:id="comboBoxInfr" onAction="#onGetcomboBoxInfr" layoutX="308.0" layoutY="14.0" prefHeight="26.0" prefWidth="68.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                     <TextField fx:id="textFieldInfr" layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="286.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="149.20000000000005" AnchorPane.topAnchor="15.0" />
+                  </children>
+            </AnchorPane>
             </content>
         </Tab>
         <Tab text=" Чат ">
@@ -40,7 +51,8 @@
                      <ComboBox fx:id="combobox" layoutX="3.0" layoutY="2.0" onAction="#setUser" prefHeight="26.0" prefWidth="120.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="1.0" />
                      <ComboBox fx:id="comboboxData" layoutX="130.0" prefHeight="26.0" prefWidth="117.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="0.0" />
                      <Button layoutX="280.0" mnemonicParsing="false" onAction="#saveData" text="Button" AnchorPane.rightAnchor="14.399999999999977" AnchorPane.topAnchor="0.0" />
-                  </children></AnchorPane>
+                  </children>
+                </AnchorPane>
             </content>
         </Tab>
      </tabs>
