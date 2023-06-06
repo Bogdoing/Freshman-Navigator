@@ -1,0 +1,83 @@
+#audit{
+    position: relative;
+    width: 100%;
+}
+
+#audit div{
+    color: #000;
+    margin: auto;
+    padding: 29px;
+}
+
+#audit ul{
+    text-decoration: solid;
+    
+}
+#audit li{
+    text-decoration: solid;
+    letter-spacing: 2px;
+    font-size: 1.3em;
+    text-decoration: none;
+    margin: 5px 0px 0px 20%;
+}
+
+#audit a{
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+#audit h1{
+    text-align: center;
+    font-size: 3.5em;
+    padding: 5%;
+    color: #ff0157;
+}
+#audit h2{
+    text-align: center;
+    font-size: 2.5em;
+    padding: 3%;
+    color: #3B4762;
+}
+#audit span{
+    color: #ff0157;
+    font-size: 6em;
+    z-index: 10;
+}
+
+
+.number-audit-pane{
+    position: relative;
+    display: flex;
+}
+
+.pane{
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
+.pane .text{
+    color: #fff;
+    font-size: 1.3em;
+}
+
+.bg-pane{
+    position: absolute;
+    width: 120px;
+    height: 100px;
+    background: #3B4762;
+    top: 115px;
+    z-index: -1;
+    transition: 0.23s;
+}
+
+.bg-pane:hover{
+    position: absolute;
+    width: 130px;
+    height: 100px;
+    background: #3B4762;
+    top: 115px;
+    transition: 0.23s;
+}
