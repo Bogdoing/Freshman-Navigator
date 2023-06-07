@@ -4,7 +4,6 @@ import com.example.course2.Chat.Client;
 import com.example.course2.Chat.Server;
 import com.example.course2.Chat.User;
 import com.example.course2.Chat.UserF;
-import com.example.course2.View.Web;
 import com.example.course2.dao.facPac.FacDAO;
 import com.example.course2.dao.facPac.FacF;
 import com.example.course2.dao.messagePac.MassageF;
@@ -66,7 +65,6 @@ public class HelloController implements Initializable {
 
     private ObservableList<Fac> dataList = FXCollections.observableArrayList();
 
-    private Web web = new Web();
 
 //    WebEngine engine = webView.getEngine();
 
@@ -106,8 +104,19 @@ public class HelloController implements Initializable {
         textField.clear();
     }
 
+
+
+
     @FXML
-    protected void onGetDataButton(){
+    protected void onGetcomboBoxInfr(){
+        System.out.println("sdfsdfa" + comboBoxInfr.getValue());
+        //comboBoxInfr.getItems();
+        table_fac_init();
+        onGetSearch();
+    }
+
+
+    protected void setTable(){
         facDAO = facF.getFakDao((String) comboBoxInfr.getValue());
         dataList = observableList;
         if (facDAO.getDataList() == null) {
@@ -118,15 +127,6 @@ public class HelloController implements Initializable {
         TVfac.setItems(observableList);
 
     }
-
-    @FXML
-    protected void onGetcomboBoxInfr(){
-        System.out.println("sdfsdfa" + comboBoxInfr.getValue());
-        //comboBoxInfr.getItems();
-        table_fac_init();
-        onGetSearch();
-    }
-
     protected void onGetSearch(){
         dataList = observableList;
 
@@ -249,6 +249,6 @@ public class HelloController implements Initializable {
         tableDAO = tableF.getTableDAO((String) comboBoxInfr.getValue());
         tableDAO.getTable(TVfac);
 
-        onGetDataButton();
+        setTable();
     }
 }
