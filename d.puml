@@ -1,0 +1,210 @@
+@startuml
+class com.example.course2.dao.facPac.FacDAOkf {
+- ConnectionDB connectionDB
+- Connection connection
++ void saveData(Fac)
++ List<Fac> getDataList()
+}
+class com.example.course2.entity.Fac {
+- SimpleIntegerProperty id
+- SimpleStringProperty name_f
+- SimpleStringProperty adress
+- SimpleStringProperty telefon
+- SimpleStringProperty mail
+- SimpleIntegerProperty fac_id
+- SimpleStringProperty name_k
++ int getId()
++ SimpleIntegerProperty idProperty()
++ void setId(int)
++ String getName_f()
++ SimpleStringProperty name_fProperty()
++ void setName_f(String)
++ String getAdress()
++ SimpleStringProperty adressProperty()
++ void setAdress(String)
++ String getTelefon()
++ SimpleStringProperty telefonProperty()
++ void setTelefon(String)
++ String getMail()
++ SimpleStringProperty mailProperty()
++ void setMail(String)
++ int getFac_id()
++ SimpleIntegerProperty fac_idProperty()
++ void setFac_id(int)
++ String getName_k()
++ SimpleStringProperty Name_kProperty()
++ void setName_k(String)
++ String toString()
+}
+class com.example.course2.dao.facPac.FacDAOdr {
+- ConnectionDB connectionDB
+- Connection connection
++ void saveData(Fac)
++ List<Fac> getDataList()
+}
+interface com.example.course2.dao.facPac.FacDAO {
+~ void saveData(Fac)
+~ List<Fac> getDataList()
+}
+class com.example.course2.dao.messagePac.MessageDAOpg {
+- Connection connection
+- String url
+- String username
+- String password
++ void saveData(Message)
++ List<Message> getDataList()
+}
+class com.example.course2.HelloController {
+- Label welcomeText
+- ComboBox combobox
+- ComboBox comboBoxInfr
+- ComboBox comboboxData
+- TextArea textArea
+- TextField textField
+- TableView TVfac
+- WebView webView
+- TextField TFurl
+- TextField textFieldInfr
+~ MassageF massageF
+~ MessageDAO messageDAO
+~ FacF facF
+~ FacDAO facDAO
+~ TableF tableF
+~ TableDAO tableDAO
+- ObservableList<Fac> observableList
+- ObservableList<Fac> dataList
+# void onHelloButtonClick()
+# void saveData()
+# void setUser()
+# void onGetcomboBoxInfr()
+# void setTable()
+# void onGetSearch()
++ void onSentNewDataButton()
++ void WebViewClick()
++ void goHome()
++ WebEngine getEngines()
++ void initialize(URL,ResourceBundle)
+- void table_fac_init()
+}
+class com.example.course2.dao.tablePac.TableF {
+- TableDAO tableDAO
++ {static} String I_fk
++ {static} String I_kf
++ {static} String I_dr
++ TableDAO getTableDAO(String)
+}
+class com.example.course2.dao.tablePac.TableKF {
++ void getTable(TableView)
+}
+class com.example.course2.Chat.Server {
+~ ServerSocket serverSocket
+~ Socket clientSocket
+~ BufferedReader in
+~ PrintWriter out
+~ Scanner sc
+~ boolean pass
++ void create(TextArea,TextField)
++ boolean SinIn(TextField)
++ void sender(TextField,TextArea)
++ void receive()
++ void receive(TextArea)
+}
+interface com.example.course2.dao.tablePac.TableDAO {
+~ void getTable(TableView)
+}
+interface com.example.course2.dao.messagePac.MessageDAO {
+~ void saveData(Message)
+~ List<Message> getDataList()
+}
+class com.example.course2.entity.Message {
+- SimpleIntegerProperty id
+- SimpleStringProperty text
+- SimpleStringProperty author
++ int getId()
++ SimpleIntegerProperty idProperty()
++ void setId(int)
++ String getText()
++ SimpleStringProperty textProperty()
++ void setText(String)
++ String getAuthor()
++ SimpleStringProperty authorProperty()
++ void setAuthor(String)
++ String toString()
+}
+class com.example.course2.dao.facPac.FacF {
+- FacDAO facDAO
++ {static} String F_fk
++ {static} String F_kf
++ {static} String F_dr
++ FacDAO getFakDao(String)
+}
+class com.example.course2.dao.facPac.FacDAOpg {
+- ConnectionDB connectionDB
+- Connection connection
++ void saveData(Fac)
++ List<Fac> getDataList()
+}
+class com.example.course2.dao.messagePac.MassageF {
+- MessageDAO noteDao
++ {static} String DB_pg
++ {static} String DB_li
++ MessageDAO getTaskDao(String)
+}
+interface com.example.course2.Chat.User {
+~ void create(TextArea,TextField)
+~ boolean SinIn(TextField)
+~ void sender(TextField,TextArea)
+~ void receive(TextArea)
+~ void receive()
+}
+class com.example.course2.HelloApplication {
++ void start(Stage)
++ {static} void main(String[])
+}
+class com.example.course2.Chat.Client {
+~ Socket clientSocket
+~ BufferedReader in
+~ PrintWriter out
+~ Scanner sc
++ void create(TextArea,TextField)
++ boolean SinIn(TextField)
++ void sender(TextField,TextArea)
++ void receive()
++ void receive(TextArea)
+}
+class com.example.course2.db.ConnectionDB {
+- Connection connection
+- String url
+- String username
+- String password
++ Connection getConnection()
+}
+class com.example.course2.dao.tablePac.TableFK {
++ void getTable(TableView)
+}
+class com.example.course2.dao.tablePac.TableDR {
++ void getTable(TableView)
+}
+class com.example.course2.dao.messagePac.MessageDAOlist {
+- List<Message> messageList
++ void saveData(Message)
++ List<Message> getDataList()
+}
+class com.example.course2.Chat.UserF {
++ User getUser(String)
+}
+
+
+com.example.course2.dao.facPac.FacDAO <|.. com.example.course2.dao.facPac.FacDAOkf
+com.example.course2.dao.facPac.FacDAO <|.. com.example.course2.dao.facPac.FacDAOdr
+com.example.course2.dao.messagePac.MessageDAO <|.. com.example.course2.dao.messagePac.MessageDAOpg
+javafx.fxml.Initializable <|.. com.example.course2.HelloController
+com.example.course2.dao.tablePac.TableDAO <|.. com.example.course2.dao.tablePac.TableKF
+com.example.course2.Chat.User <|.. com.example.course2.Chat.Server
+com.example.course2.dao.facPac.FacDAO <|.. com.example.course2.dao.facPac.FacDAOpg
+javafx.application.Application <|-- com.example.course2.HelloApplication
+com.example.course2.Chat.User <|.. com.example.course2.Chat.Client
+com.example.course2.dao.tablePac.TableDAO <|.. com.example.course2.dao.tablePac.TableFK
+com.example.course2.dao.tablePac.TableDAO <|.. com.example.course2.dao.tablePac.TableDR
+com.example.course2.dao.messagePac.MessageDAO <|.. com.example.course2.dao.messagePac.MessageDAOlist
+@enduml
