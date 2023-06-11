@@ -57,9 +57,9 @@
                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="450.0" AnchorPane.bottomAnchor="4.0">
                      <children>
                          <ListView fx:id="keepList" layoutY="156.0" prefHeight="241.0" prefWidth="432.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="156.0" />
-                     <TextField fx:id="keepTitle" layoutX="14.0" layoutY="13.0" prefHeight="26.0" prefWidth="352.0" promptText="Введите название заметки" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="15.0" />
-                     <Button fx:id="keepAdd" layoutX="383.40000000000003" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Add" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0" />
-                     <TextArea fx:id="keepText" layoutX="15.0" layoutY="56.0" prefHeight="86.0" prefWidth="353.0" promptText="Введите текст заметки" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="56.0" />
+                         <TextField fx:id="keepTitle" layoutX="14.0" layoutY="13.0" prefHeight="26.0" prefWidth="352.0" promptText="Введите название заметки" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="15.0" />
+                         <Button fx:id="keepAdd" onAction="#addKeep" layoutX="383.40000000000003" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Add" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0" />
+                         <TextArea fx:id="keepText"  layoutX="15.0" layoutY="56.0" prefHeight="86.0" prefWidth="353.0" promptText="Введите текст заметки" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="56.0" />
                      </children>
                  </AnchorPane>
              </content>

@@ -4,6 +4,7 @@ import com.example.course2.Chat.Client;
 import com.example.course2.Chat.Server;
 import com.example.course2.Chat.User;
 import com.example.course2.Chat.UserF;
+import com.example.course2.dao.Keeps;
 import com.example.course2.dao.facPac.FacDAO;
 import com.example.course2.dao.facPac.FacF;
 import com.example.course2.dao.messagePac.MassageF;
@@ -13,6 +14,7 @@ import com.example.course2.dao.messagePac.MessageDAOpg;
 import com.example.course2.dao.tablePac.TableDAO;
 import com.example.course2.dao.tablePac.TableF;
 import com.example.course2.entity.Fac;
+import com.example.course2.entity.Keep;
 import com.example.course2.entity.Message;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,14 +22,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.concurrent.Worker.State;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -51,6 +57,18 @@ public class HelloController implements Initializable {
     private TextField TFurl;
     @FXML
     private TextField textFieldInfr;
+
+    @FXML
+    private ListView keepList;
+    @FXML
+    private TextField keepTitle;
+    @FXML
+    private Button keepAdd;
+    @FXML
+    private TextArea keepText;
+    Keeps keeps = new Keeps();
+    List<Keep> keepsListTitle = keeps.getKeepList();
+    List<Keep> keepsListText = keeps.getKeepList();
 
     MassageF massageF = new MassageF();
     MessageDAO messageDAO;
@@ -105,14 +123,56 @@ public class HelloController implements Initializable {
     }
 
 
-
-
     @FXML
     protected void onGetcomboBoxInfr(){
         System.out.println("sdfsdfa" + comboBoxInfr.getValue());
         //comboBoxInfr.getItems();
         table_fac_init();
         onGetSearch();
+    }
+
+    @FXML
+    protected void addKeep(){
+        Keep keep = new Keep();
+        System.out.println("keepTitle.getText()"+keepTitle.getText());
+        keep.setTitle(keepTitle.getText());
+        keep.setText(keepText.getText());
+
+        System.out.println("keep save - " + keep);
+        keeps.saveKeep(keep);
+
+        keepList.getItems().clear();
+
+        keeps();
+
+    }
+    private  void keeps(){
+        keepsListTitle = keeps.getKeepList();
+        keepsListText = keepsListTitle;
+        System.out.println("keepsListTitle - " + keepsListTitle);
+        System.out.println("keepsListText - " + keepsListText);
+        for (int i = 0; i < keepsListTitle.size(); i++){
+            keepList.getItems().add(keepsListTitle.get(i).getTitle());
+        }
+
+        keepList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                //keepText.setText("clicked on " + keepList.getSelectionModel().getSelectedItem());
+
+                System.out.println("keepList - " + keepList.getItems());
+
+                for (int i = 0; i < keepsListText.size(); i++){
+                    if (keepList.getSelectionModel().getSelectedItem() == keepsListText.get(i).getTitle()){
+                        keepText.setText("clicked on " + keepsListText.get(i).getText());
+                    }
+                }
+
+
+
+            }
+        });
     }
 
 
@@ -219,6 +279,8 @@ public class HelloController implements Initializable {
         comboBoxInfr.getItems().add("ДР");
         comboBoxInfr.getSelectionModel().selectFirst();
 
+        keeps();
+
         TVfac.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         textArea.appendText("Введите пароль");
@@ -243,6 +305,8 @@ public class HelloController implements Initializable {
         //engine.load(getClass().getResource("../View/index.html").toExternalForm());
         //engine.executeScript("document.getElementById('btn').addEventListener('click', function() { loadFile('/test/index2.html')});");
     }
+
+
 
 
     private void table_fac_init(){
