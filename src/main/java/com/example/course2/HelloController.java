@@ -339,7 +339,7 @@ public class HelloController implements Initializable {
 
     public void goHome() {
         WebEngine engine = getEngines();
-        engine.load("file:///D:/files/CODE/JAVA/course2/course2/src/main/resources/com/example/course2/index.html");
+        engine.load("file:///D:/files/CODE/JAVA/PROJECT/Freshman-Navigator-master/src/main/resources/com/example/course2/index.html");
         engine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
             @Override
             public void changed(ObservableValue<? extends State> ov, State oldState, State newState) {
