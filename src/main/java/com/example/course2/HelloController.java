@@ -4,7 +4,6 @@ import com.example.course2.Chat.Client;
 import com.example.course2.Chat.Server;
 import com.example.course2.Chat.User;
 import com.example.course2.Chat.UserF;
-import com.example.course2.dao.Keeps;
 import com.example.course2.dao.facPac.FacDAO;
 import com.example.course2.dao.facPac.FacF;
 import com.example.course2.dao.messagePac.MassageF;
@@ -34,10 +33,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.concurrent.Worker.State;
-import javafx.util.Pair;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;

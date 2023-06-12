@@ -1,0 +1,79 @@
+#map{
+    position: relative;
+    
+    width: 100%;
+    height: 650px;
+    margin-bottom: 100px;
+}
+
+#map h2{
+    text-align: center;
+    font-size: 2.5em;
+    padding: 2%;
+    color: #3B4762;
+    z-index: 2;
+}
+
+.map img {
+    scale: 0.5;
+}
+
+.global {
+    /* width: 500px */
+    position: absolute;
+    top: 150px;
+}
+
+.vgtu {
+    position: absolute;
+    opacity: 0;
+}
+
+.vgtu:hover {
+    position: absolute;
+    opacity: 1;
+    transition: 0.2s;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    /* scale: 0.6; */
+}
+
+.muzei {
+    position: absolute;
+    top: 498px;
+    left: 248px;
+}
+
+.vgtu2 {
+    position: absolute;
+    top: 470px;
+    left: 108px;
+}
+
+.vgtu6 {
+    position: absolute;
+    top: 462px;
+    left: 15px;
+}
+
+.vgtu5 {
+    position: absolute;
+    top: 432px;
+    left: 96px;
+}
+
+.vgtu1 {
+    position: absolute;
+    top: 356px;
+    left: 193px;
+}
+
+.vgtu3 {
+    position: absolute;
+    top: 328px;
+    left: 287px;
+}
+.vgtu7 {
+    position: absolute;
+    top: 343px;
+    left: 341px;
+}

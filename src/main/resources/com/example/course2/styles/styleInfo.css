@@ -1,0 +1,35 @@
+#info{
+    margin-top: 10px;
+    width: 100%;
+    background: url("../img/bg-vgtu-1.png");
+}
+
+#info div{
+    /* background-image: url("../img/bg-vgtu-1.png"); */
+    /* height: 50vh; */
+    color: #fff;
+    margin: auto;
+    width: 305px;
+    padding: 29px;
+}
+
+#info ul{
+    text-decoration: solid;
+    
+}
+#info li{
+    text-decoration: solid;
+    
+}
+
+#info a{
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+#info a:hover{
+    color: #ff0157;
+    transition: 0.2s;
+}

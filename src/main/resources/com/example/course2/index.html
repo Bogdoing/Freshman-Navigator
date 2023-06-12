@@ -1,0 +1,316 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/styleStar.css">
+    <link rel="stylesheet" href="styles/styleContact.css">
+    <link rel="stylesheet" href="styles/slider.css">
+    <link rel="stylesheet" href="styles/styleInfo.css">
+    <link rel="stylesheet" href="styles/styleIos.css">
+    <link rel="stylesheet" href="styles/styleAudit.css">
+    <link rel="stylesheet" href="styles/stylesFile.css">
+    <link rel="stylesheet" href="styles/stylePrepod.css">
+    <link rel="stylesheet" href="styles/styleMaps.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> </script>
+
+</head>
+
+
+<body>
+
+    <header>
+        <div id="h"></div>
+        <a href="#banner" class="logo">НП<span>.</span>ру</a>
+        <div class="menuToggle" onclick="toggleMenu();"></div>
+        <ul class="navigation">
+            <li><a id="getCart" href="#banner">В начало</a></li>
+            <li><a href="#contact">Контакты</a></li>
+            <li><a href="#info">Полезные ссылки</a></li>
+            <li><a href="#konact">Контакты</a></li>
+            <li><a href="#ios">ЭИОС ВГТУ</a></li>
+            <li><a href="#audit">Аудитории</a></li>
+        </ul>
+
+    </header>
+
+
+    <div class="slider">
+
+    </div>
+
+
+    <section id="audit">
+        <div>
+            <h1>Как расшифровать номер аудитории?</h1>
+
+            <h2>Номер аудитории лучше читать справа налево:</h2>
+            <ul>
+                <li>первые две цифры справа - номер аудитории</li>
+                <li>третья цифра справа - номер этажа</li>
+                <li>четвертая и пятая цифра - номер корпуса</li>
+            </ul>
+            <div class="number-audit-pane">
+                <div class="pane corpus-pane">
+                    <span>1</span>
+                    <p class="text">корпус</p>
+                    <div class="bg-pane"> </div>
+                </div>
+
+
+                <div class="pane etaj-pane">
+                    <span>3</span>
+                    <p class="text">этаж</p>
+                    <div class="bg-pane"> </div>
+                </div>
+
+
+                <div class="pane audit-pane">
+                    <span>03</span>
+                    <p class="text">аудитория</p>
+                    <div class="bg-pane"> </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="map">
+        <div>
+            <h2 id="map-name">...</h2>
+
+            <img class="global" src="img/courpus-a/courpus-gasu.jpg" alt="">
+            <img class="vgtu muzei" src="img/courpus-a/muzei.png" alt="asd">
+            <img class="vgtu vgtu2" src="img/courpus-a/vgtu2.png" alt="2">
+            <img class="vgtu vgtu6" src="img/courpus-a/vgtu6.png" alt="6">
+            <img class="vgtu vgtu5" src="img/courpus-a/vgtu5.png" alt="5">
+            <img class="vgtu vgtu1" src="img/courpus-a/vgtu1.png" alt="1">
+            <img class="vgtu vgtu3" src="img/courpus-a/vgtu3.png" alt="3">
+            <img class="vgtu vgtu7" src="img/courpus-a/vgtu7.png" alt="7">
+        </div>
+    </section>
+
+
+    <section id="info">
+        <div>
+            <ul>
+                <li>
+                    <a href="https://cchgeu.ru/studentu/schedule/">
+                        Расписание занятий</a>
+                </li>
+                <li>
+                    <a
+                        href="https://yandex.ru/maps/193/voronezh/?from=api-maps&ll=39.167687%2C51.709283&origin=jsapi_2_0&pt=39.194473233478%2C51.65146790423~39.185727618385%2C51.684423345179~39.197791696448%2C51.663101530491~39.184811019601%2C51.757113659176~39.181613826455%2C51.757529132878~39.18812223876%2C51.684468580863~39.192216536867%2C51.652538868341~39.195132808909%2C51.651477975199~39.194521265254%2C51.650885328585~39.192655992882%2C51.651805935055&z=12">
+                        Карта корпусов вуза</a>
+                </li>
+                <li>
+                    <a href="https://cchgeu.ru/studentu/spravka/">
+                        Заказ справки об обучении</a>
+                </li>
+                <li>
+                    <a href="https://cchgeu.ru/university/library/">
+                        Научная библиотека</a>
+                </li>
+                <li>
+                    <a href="https://cchgeu.ru/studentu/nayti-kontakty-prepodavatelya/">
+                        Найти контакты перподователя</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="prepod">
+        <h2>Найти контакты перподователя</h2>
+
+        <div class="container">
+            <div class="text-field">
+                <div class="text-field__group">
+                    <input class="text-field__input" type="search" id="search" name="search">
+                    <button class="text-field__btn" type="button">Найти</button>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <script>
+            $('button').click(function () { // a-prepod
+                var name = $("#search").val()
+                var url = `https://cchgeu.ru/studentu/nayti-kontakty-prepodavatelya/?arrFilter_ff%5BNAME%5D=${name}&set_filter=Поиск&set_filter=Y`;
+                console.log(name)
+                window.location.href = url
+            })                  
+        </script>
+    </section>
+
+
+
+    <section id="ios">
+        <div>
+            <h1>Работа с личным кабинетом и ЭИОС</h1>
+            <p>Получи логин и пароль у куратора </p>
+            <p>и переходи по ссылке <br> ↓</p>
+            <div class="link-container">
+
+                <a href="https://old.education.cchgeu.ru/login/index.php">ЭИОС ВГТУ</a>
+            </div>
+
+            <h6>
+                <i> Восстановить логин и пароль для входа на «Образовательный портал ВГТУ» можно в аудитории 6407 (Отдел
+                    цифровых образовательных технологий). При себе обязательно иметь студенческий билет или электронный
+                    пропуск. Или написать на адрес электронной почты shotylodm@mail.ru, указав в письме ФИО, факультет,
+                    учебную группу, номер студенческого билета или зачетной книжки.
+                </i>
+            </h6>
+
+            <hr>
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <div></div>
+        <h1> Первые шаги студента </h1>
+        <p>Здесь ты узнаешь, с чего начать свою новую студенческую жизнь!</p>
+        <h2>Администрация</h2>
+        <hr>
+
+        <table border="0">
+            <tr>
+                <th>Телефоны:</th>
+                <th>E-mail:</th>
+                <th>Время работы:</th>
+                <th>Как нас найти:</th>
+            </tr>
+            <tr>
+                <td>+7 (473) 207-22-20</td>
+                <td>rector@cchgeu.ru</td>
+                <td>с 8:00 до 20:00 <br>
+                    с понедельника по пятницу</td>
+                <td>ул. 20-летия Октября, 84</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>rector@cchgeu.ru</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>rector@vgasu.vrn.ru</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <hr>
+
+        <img src="img/vstu-logo-gold.svg" alt="loading">
+    </section>
+    <footer></footer>
+
+    <script>
+        function test() {
+
+            $("#getCart").click(function () {
+                $("section").html("<img src=" + "img/courpus.jpg" + "alt=\"альтернативный текст\">")
+            });
+            $("#page2").click(function () {
+                $("#btn").text("rename2")
+            });
+
+            $("#btn").click(function () {
+                $("#btn").text("rename0")
+            });
+
+        }
+
+    </script>
+    <script src="script/createSlider.js"></script>
+    <script src="script/header.js"></script>
+    <script src="script/navbar.js"></script>
+    <script src="script/map.js"></script>
+</body>
+
+<!-- <section id="files">
+        <hr>
+        <h1>Буклеты</h1>
+    <a href="https://cchgeu.ru/abiturientu/info/#materials-4">asdadasdasd7777sa</a>
+
+    <div class="accordion">
+        <div class="contentBx">
+            <div class="label">Абитуриенту</div>
+
+            <div class="contenet">
+                <img src="doc/abit_page-0001.jpg" alt="load">
+                <img src="doc/abit_page-0002.jpg" alt="load">
+            </div>
+        </div>
+      
+        <div class="contentBx">
+            <div class="label">О разработке</div>
+            <div class="contenet">
+                <embed src="doc/abit.pdf" width="800px" height="2100px" />
+            </div>
+        </div>
+  
+        <div class="contentBx">
+            <div class="label">Ссылки на все страницы </div>
+            <div class="contenet">
+            </div>
+        </div>
+    </div>
+    <script>
+        const accordion = document.getElementsByClassName('contentBx');
+        for (i = 0; i < accordion.length; i++) {
+            accordion[i].addEventListener('click', function () {
+                this.classList.toggle('active')
+            })
+        }
+    </script>
+    </section> -->
+
+<!-- <section id="moon">
+        <div class="scene">
+            <div class="moon"></div>
+            <p> Привет! Поздравляем тебя с поступлением в Воронежский государственный технический университет!
+                Чтобы тебе было проще ориентироваться в многообразии студенческой жизни,
+                мы собрали всю самую важную и полезную информацию в этом гайде.
+            </p>
+            <img src="forest.png" class="forest">
+        </div>
+        <script type="text/javascript">
+            function stars() {
+                let count = 250;
+                let scene = document.querySelector('.scene');
+                let i = 0;
+                while (i < count) {
+                    let star = document.createElement("i");
+                    let x = Math.floor(Math.random() * window.innerWidth);
+                    let y = Math.floor(Math.random() * window.innerHeight);
+                    let duration = Math.random() * 10;
+                    let size = Math.random() * 2;
+
+                    star.style.left = x + 'px';
+                    star.style.top = y + 'px';
+                    star.style.width = 1 + size + 'px';
+                    star.style.height = 1 + size + 'px';
+                    /**/
+                    star.style.animationDuration = 5 + duration + 's';
+                    star.style.animationDelay = duration + 's';
+
+                    scene.appendChild(star);
+                    i++
+                }
+            }
+            stars();
+            // window.onresize = function (event) {
+            //     let scene = document.getElementsByName('i');
+            //     console.log(scene)
+            //     //scene.remove();
+            //     stars();
+            // };
+        </script>
+    </section> -->
+
+</html>

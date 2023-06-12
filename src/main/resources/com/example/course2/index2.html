@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"> </script>
+
+    <title>Document</title>
+
+    <style>
+        img {
+            scale: 0.5;
+        }
+
+        .global {
+            /* width: 500px */
+            position: absolute;
+            top: -147px;
+        }
+
+        .muzei {
+            position: absolute;
+            top: 161px;
+            left: 321px;
+            opacity: 0;
+        }
+
+        .muzei:hover {
+            position: absolute;
+            top: 161px;
+            left: 321px;
+            opacity: 1;
+            transition: 0.2s;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            scale: 0.6;
+        }
+
+        .vgtu2 {
+            position: absolute;
+            top: 119px;
+            left: 223px;
+            opacity: 0;
+        }
+
+        .vgtu2:hover {
+            position: absolute;
+            top: 119px;
+            left: 223px;
+            opacity: 1;
+            transition: 0.2s;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>...</p>
+
+        <img class="global" src="img/courpus-a/courpus-gasu.jpg" alt="">
+        <img class="muzei" src="img/courpus-a/muzei.png" alt="asd">
+        <img class="vgtu2" src="img/courpus-a/vgtu2.png" alt="2">
+    </div>
+
+    <script>
+        $(".vgtu2").hover(function () {
+            //alert("Hover")
+            $('p').text('Вы навели на корпус 2')
+        })
+        $(".muzei").hover(function () {
+            //alert("Hover")
+            $('p').text('Вы навели на корпус музей')
+        })
+
+    </script>
+</body>
+
+</html>
