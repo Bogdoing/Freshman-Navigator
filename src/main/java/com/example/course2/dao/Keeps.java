@@ -35,6 +35,38 @@ public class Keeps {
         }
     }
 
+    public void delKeep(Keep keep) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement("DELETE FROM keeps WHERE title = (?);");
+            ps.setString(1, keep.getTitle());
+
+            ps.executeUpdate();
+            System.out.println("DB " + keep.toString());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void rewriteKeep(Keep keepLasted, Keep keepNew) {
+
+        System.out.println("rewriteKeep - " + keepLasted.getTitle() + " " + keepLasted.getText() + " " + keepNew.getTitle() + " " + keepNew.getText());
+
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(" UPDATE keeps SET title = (?), text = (?) WHERE title = (?) and text = (?); ");
+            ps.setString(1, keepNew.getTitle());
+            ps.setString(2, keepNew.getText());
+            ps.setString(3, keepLasted.getTitle());
+            ps.setString(4, keepLasted.getText());
+
+            ps.executeUpdate();
+            System.out.println("DB rewrite - " + keepLasted.getTitle() + " " + keepLasted.getText() + " " + keepNew.getTitle() + " " + keepNew.getText());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public List<Keep> getKeepList() {
         List<Keep> keepList = new ArrayList<>();

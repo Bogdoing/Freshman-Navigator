@@ -16,6 +16,7 @@ import com.example.course2.dao.tablePac.TableF;
 import com.example.course2.entity.Fac;
 import com.example.course2.entity.Keep;
 import com.example.course2.entity.Message;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,15 +26,20 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.concurrent.Worker.State;
+import javafx.util.Pair;
 
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -90,6 +96,7 @@ public class HelloController implements Initializable {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+
     @FXML
     protected void saveData() {
         Message message = new Message();
@@ -124,7 +131,7 @@ public class HelloController implements Initializable {
 
 
     @FXML
-    protected void onGetcomboBoxInfr(){
+    protected void onGetcomboBoxInfr() {
         System.out.println("sdfsdfa" + comboBoxInfr.getValue());
         //comboBoxInfr.getItems();
         table_fac_init();
@@ -132,9 +139,9 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    protected void addKeep(){
+    protected void addKeep() {
         Keep keep = new Keep();
-        System.out.println("keepTitle.getText()"+keepTitle.getText());
+        System.out.println("keepTitle.getText()" + keepTitle.getText());
         keep.setTitle(keepTitle.getText());
         keep.setText(keepText.getText());
 
@@ -142,16 +149,96 @@ public class HelloController implements Initializable {
         keeps.saveKeep(keep);
 
         keepList.getItems().clear();
-
         keeps();
 
     }
-    private  void keeps(){
+
+    @FXML
+    protected void delKeeps() {
+        Keep keep = new Keep(keepText.getText(), keepTitle.getText());
+
+        System.out.println("del keep - " + keep.getTitle() + " + " + keep.getText());
+        keeps.delKeep(keep);
+
+        keepList.getItems().clear();
+        keeps();
+    }
+
+    @FXML
+    protected void newKeep() {
+        keepTitle.setText("");
+        keepText.setText("");
+    }
+
+    @FXML
+    protected void reKeep() {
+        Keep keepLast = new Keep(keepText.getText(), keepTitle.getText());
+
+        System.out.println("re keep - " + keepLast.getTitle() + " + " + keepLast.getText());
+
+        // Create the custom dialog.
+        //Dialog<Pair<String, String>> dialog = new Dialog<>();
+        Dialog<Keep> dialog = new Dialog<>();
+        dialog.setTitle("Rewrite Keep");
+        dialog.setHeaderText("Rewrite Keep");
+
+        ButtonType loginButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField title = new TextField();
+        title.setPromptText("Title");
+        TextArea text = new TextArea();
+        text.setPromptText("Text");
+
+        grid.add(new Label("Title:"), 0, 0);
+        grid.add(title, 1, 0);
+        grid.add(new Label("Text:"), 0, 1);
+        grid.add(text, 1, 1);
+
+        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+        loginButton.setDisable(true);
+
+        title.textProperty().addListener((observable, oldValue, newValue) -> {
+            loginButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+        Platform.runLater(() -> title.requestFocus());
+
+        Keep resultKeeps = new Keep();
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == loginButtonType) {
+                return new Keep(text.getText(), title.getText());
+            }
+            return null;
+        });
+
+        //Optional<Pair<String, String>> result = dialog.showAndWait();
+        Optional<Keep> resultKeep = dialog.showAndWait();
+        resultKeeps = resultKeep.get();
+
+        System.out.println("resultKeeps - " + resultKeeps.getText() + " / " + resultKeeps.getTitle() + " *");
+        System.out.println("keepLast    - " + keepLast.getText() + " / " + keepLast.getTitle() + " *");
+
+        keeps.rewriteKeep(keepLast, resultKeeps);
+
+        keepList.getItems().clear();
+        keeps();
+    }
+
+    private void keeps() {
         keepsListTitle = keeps.getKeepList();
         keepsListText = keepsListTitle;
         System.out.println("keepsListTitle - " + keepsListTitle);
         System.out.println("keepsListText - " + keepsListText);
-        for (int i = 0; i < keepsListTitle.size(); i++){
+        for (int i = 0; i < keepsListTitle.size(); i++) {
             keepList.getItems().add(keepsListTitle.get(i).getTitle());
         }
 
@@ -163,12 +250,12 @@ public class HelloController implements Initializable {
 
                 System.out.println("keepList - " + keepList.getItems());
 
-                for (int i = 0; i < keepsListText.size(); i++){
-                    if (keepList.getSelectionModel().getSelectedItem() == keepsListText.get(i).getTitle()){
-                        keepText.setText("clicked on " + keepsListText.get(i).getText());
+                for (int i = 0; i < keepsListText.size(); i++) {
+                    if (keepList.getSelectionModel().getSelectedItem() == keepsListText.get(i).getTitle()) {
+                        keepText.setText("" + keepsListText.get(i).getText());
+                        keepTitle.setText("" + keepsListText.get(i).getTitle());
                     }
                 }
-
 
 
             }
@@ -176,18 +263,19 @@ public class HelloController implements Initializable {
     }
 
 
-    protected void setTable(){
+    protected void setTable() {
         facDAO = facF.getFakDao((String) comboBoxInfr.getValue());
         dataList = observableList;
         if (facDAO.getDataList() == null) {
             //onSentNewDataButton();
         }
         observableList = FXCollections.observableList(facDAO.getDataList());
-        System.out.println("observableList"+observableList);
+        System.out.println("observableList" + observableList);
         TVfac.setItems(observableList);
 
     }
-    protected void onGetSearch(){
+
+    protected void onGetSearch() {
         dataList = observableList;
 
         FilteredList<Fac> filteredData = new FilteredList<>(dataList, b -> true);
@@ -204,10 +292,10 @@ public class HelloController implements Initializable {
                 System.out.println("lowerCaseFilter - " + lowerCaseFilter
                         + " | employee - " + employee.getName_f().toLowerCase().indexOf(lowerCaseFilter)
                         + " | getName_f - " + employee.getName_f().toLowerCase());
-                if (employee.getName_f().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                if (employee.getName_f().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     //System.out.println("getName_f");
                     return true;
-                }else if (employee.getName_k().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                } else if (employee.getName_k().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     //System.out.println("getName_k");
                     return true;
                 } else if (employee.getAdress().toLowerCase().indexOf(lowerCaseFilter) != -1) {
@@ -216,8 +304,7 @@ public class HelloController implements Initializable {
                 } else if (String.valueOf(employee.getMail()).indexOf(lowerCaseFilter) != -1) {
                     //System.out.println("getMail");
                     return true;
-                }
-                else
+                } else
                     return false;
             });
             SortedList<Fac> sortedData = new SortedList<>(filteredData);
@@ -244,13 +331,13 @@ public class HelloController implements Initializable {
         //onGetDataButton();
     }
 
-    public void WebViewClick(){
+    public void WebViewClick() {
         WebEngine engine = getEngines();
         //System.out.println(engine.getLocation());
         TFurl.setText(engine.getLocation());
     }
 
-    public void goHome(){
+    public void goHome() {
         WebEngine engine = getEngines();
         engine.load("file:///D:/files/CODE/JAVA/course2/course2/src/main/resources/com/example/course2/index.html");
         engine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
@@ -264,7 +351,7 @@ public class HelloController implements Initializable {
         System.out.println("engine.getLocation() - " + engine.getLocation());
     }
 
-    public WebEngine getEngines(){
+    public WebEngine getEngines() {
         WebEngine engine = webView.getEngine();
         return engine;
     }
@@ -307,9 +394,7 @@ public class HelloController implements Initializable {
     }
 
 
-
-
-    private void table_fac_init(){
+    private void table_fac_init() {
         tableDAO = tableF.getTableDAO((String) comboBoxInfr.getValue());
         tableDAO.getTable(TVfac);
 
