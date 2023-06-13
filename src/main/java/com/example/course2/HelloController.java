@@ -93,14 +93,15 @@ public class HelloController implements Initializable {
 
 //    WebEngine engine = webView.getEngine();
 
-
+    /**
+     * Выбор (ComboBox) куда сохранять сообщения
+     */
     @FXML
     protected void saveData() {
         Message message = new Message();
         message.setText(textArea.getText());
         message.setAuthor((String) combobox.getValue());
         messageDAO = massageF.getTaskDao((String) comboboxData.getValue());
-        //System.out.println(messageDAO);
         messageDAO.saveData(message);
         if (messageDAO instanceof MessageDAOpg)
             textArea.appendText("\nData is save: MessageDAOpg");
@@ -110,6 +111,9 @@ public class HelloController implements Initializable {
 
     }
 
+    /**
+     * Создание класса user для чата
+     */
     @FXML
     protected void setUser() {
         System.out.println(combobox.getValue());
@@ -126,7 +130,9 @@ public class HelloController implements Initializable {
         textField.clear();
     }
 
-
+    /**
+     * Выбор категории инфраструктуры ВУЗа
+     */
     @FXML
     protected void onGetcomboBoxInfr() {
         System.out.println("sdfsdfa" + comboBoxInfr.getValue());
@@ -135,6 +141,9 @@ public class HelloController implements Initializable {
         onGetSearch();
     }
 
+    /**
+     * Добовление заметки
+     */
     @FXML
     protected void addKeep() {
         Keep keep = new Keep();
@@ -150,6 +159,9 @@ public class HelloController implements Initializable {
 
     }
 
+    /**
+     * Удаление заметки
+     */
     @FXML
     protected void delKeeps() {
         Keep keep = new Keep(keepText.getText(), keepTitle.getText());
@@ -161,12 +173,18 @@ public class HelloController implements Initializable {
         keeps();
     }
 
+    /**
+     * Очистка полуй заметок для написания новой
+     */
     @FXML
     protected void newKeep() {
         keepTitle.setText("");
         keepText.setText("");
     }
 
+    /**
+     * Изменение имеющийся заметки
+     */
     @FXML
     protected void reKeep() {
         Keep keepLast = new Keep(keepText.getText(), keepTitle.getText());
@@ -230,6 +248,10 @@ public class HelloController implements Initializable {
         keeps();
     }
 
+    /**
+     * Обработчик нажатия мыши по ListView содержащий заметки
+     * для выбора конкретной заметки
+     */
     private void keeps() {
         keepsListTitle = keeps.getKeepList();
         keepsListText = keepsListTitle;
@@ -259,7 +281,9 @@ public class HelloController implements Initializable {
         });
     }
 
-
+    /**
+     * Создание таблицы инфраструктуры ВУЗа
+     */
     protected void setTable() {
         facDAO = facF.getFakDao((String) comboBoxInfr.getValue());
         dataList = observableList;
@@ -272,6 +296,9 @@ public class HelloController implements Initializable {
 
     }
 
+    /**
+     * Интерактывный поиск инфраструктуры ВУЗа
+     */
     protected void onGetSearch() {
         dataList = observableList;
 
@@ -314,26 +341,19 @@ public class HelloController implements Initializable {
         });
     }
 
-    //@FXML
-    public void onSentNewDataButton() {
-//        Fac fac = new Fac();
-//
-//        fac.set(dateField.getText());
-//        fac.setTask(taskField.getText());
-//
-//        facDAO = facF.getFacDao(info.getText());
-//
-//        facDAO.saveData(note);
-
-        //onGetDataButton();
-    }
-
+    /**
+     * Обработчик нажатия на WebView
+     */
     public void WebViewClick() {
         WebEngine engine = getEngines();
         //System.out.println(engine.getLocation());
         TFurl.setText(engine.getLocation());
     }
 
+    /**
+     * Переход на главную страницу WebView
+     * по нажатию кнопки Домой
+     */
     public void goHome() {
         WebEngine engine = getEngines();
         engine.load("file:///D:/files/CODE/JAVA/PROJECT/Freshman-Navigator-master/src/main/resources/com/example/course2/index.html");
@@ -348,11 +368,20 @@ public class HelloController implements Initializable {
         System.out.println("engine.getLocation() - " + engine.getLocation());
     }
 
+    /**
+     * Создание WebEngine
+     * @return
+     */
     public WebEngine getEngines() {
         WebEngine engine = webView.getEngine();
         return engine;
     }
 
+    /**
+     * Метод инициализации формы
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         combobox.getItems().add("Student");
@@ -390,7 +419,9 @@ public class HelloController implements Initializable {
         //engine.executeScript("document.getElementById('btn').addEventListener('click', function() { loadFile('/test/index2.html')});");
     }
 
-
+    /**
+     * Обновление таблицы
+     */
     private void table_fac_init() {
         tableDAO = tableF.getTableDAO((String) comboBoxInfr.getValue());
         tableDAO.getTable(TVfac);
