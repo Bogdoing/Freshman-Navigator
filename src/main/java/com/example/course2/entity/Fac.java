@@ -3,6 +3,10 @@ package com.example.course2.entity;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Этот класс представляет собой модель данных Fac которая содержит данные о факультетах, кафердах и т.д.
+ * Класс содержит геттеры и сетеры для полей данных
+ */
 public class Fac {
 
     private SimpleIntegerProperty id;

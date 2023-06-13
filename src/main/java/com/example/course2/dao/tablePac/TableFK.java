@@ -5,13 +5,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Класс создающий таблицу типа (факультет)
+ */
 public class TableFK implements TableDAO{
+
+    /**
+     * Создание тиблицы типа (факультет)
+     * @param TVfac
+     */
     @Override
     public void getTable(TableView TVfac) {
-//        TableColumn Col0 = new TableColumn("id");
-//        Col0.setMinWidth(15);
-//        Col0.setCellValueFactory(new PropertyValueFactory<Fac, Integer>("id"));
-
         TableColumn Col0 = new TableColumn("name_f");
         Col0.setMinWidth(100);
         Col0.setCellValueFactory(new PropertyValueFactory<Fac, String>("name_f"));

@@ -3,6 +3,11 @@ package com.example.course2.entity;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Этот класс представляет собой модель данных Message
+ * которая содержит данные истории сообщений польховатей и автора сохранения.
+ * Класс содержит геттеры и сетеры для полей данных
+ */
 public class Message {
     private SimpleIntegerProperty id;
     private SimpleStringProperty text;

@@ -3,6 +3,10 @@ package com.example.course2.entity;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Этот класс представляет собой модель данных Keep которая содержит заметках пользователя.
+ * Класс содержит геттеры и сетеры для полей данных
+ */
 public class Keep {
     private SimpleStringProperty title;
     private SimpleStringProperty text;

@@ -11,6 +11,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * Класс создающий user-a типа client
+ * Подключается к заданному порту
+ */
 public class Client implements User {
 
     Socket clientSocket;
@@ -18,6 +22,11 @@ public class Client implements User {
     PrintWriter out;
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Создаёт подключение к серверу по хосту и сокету
+     * @param textArea
+     * @param textField
+     */
     @Override
     public void create(TextArea textArea, TextField textField){
         textArea.appendText("\nНачинайте общение");
@@ -37,6 +46,11 @@ public class Client implements User {
 
     }
 
+    /**
+     * Проверяет правильность введённого пароля для пользователя
+     * @param textField
+     * @return
+     */
     @Override
     public boolean SinIn(TextField textField){
         if (textField.getText().equals("cli"))
@@ -44,6 +58,11 @@ public class Client implements User {
         return false;
     }
 
+    /**
+     * Отвечает за отправку сообщений
+     * @param textField
+     * @param textArea
+     */
     @Override
     public void sender(TextField textField, TextArea textArea){
         Thread sender = new Thread(new Runnable() {
@@ -67,6 +86,9 @@ public class Client implements User {
         sender.start();
     }
 
+    /**
+     * Отвечает за принятие сообщений в консоль
+     */
     @Override
     public void receive(){
         Thread receiver = new Thread(new Runnable() {
@@ -90,6 +112,11 @@ public class Client implements User {
         });
         receiver.start();
     }
+
+    /**
+     * Отвечает за принятие сообщений и отображение их в текстовом поле
+     * @param textArea
+     */
     @Override
     public void receive(TextArea textArea) {
         Thread receiver = new Thread(new Runnable() {

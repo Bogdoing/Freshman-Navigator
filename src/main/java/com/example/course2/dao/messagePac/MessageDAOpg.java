@@ -6,6 +6,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс содержащий классы для созранение и получения сообщений из БД
+ */
 public class MessageDAOpg implements MessageDAO {
 
     private Connection connection;
@@ -13,6 +16,9 @@ public class MessageDAOpg implements MessageDAO {
     private final String username = "postgres";
     private final String password = "12qwaszx";
 
+    /**
+     * Подключение к БД
+     */
     public MessageDAOpg() {
         try {
             connection = DriverManager.getConnection(url, username, password);
@@ -21,6 +27,10 @@ public class MessageDAOpg implements MessageDAO {
         }
     }
 
+    /**
+     * Созранение сообщений в БД
+     * @param message
+     */
     @Override
     public void saveData(Message message) {
         PreparedStatement ps = null;
@@ -36,6 +46,10 @@ public class MessageDAOpg implements MessageDAO {
         }
     }
 
+    /**
+     * Получение списка сообщений из БД
+     * @return
+     */
     @Override
     public List<Message> getDataList() {
         List<Message> messageList = new ArrayList<>();

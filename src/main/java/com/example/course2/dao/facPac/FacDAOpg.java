@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс содержащий методы работы с инфраструктурой ВУЗа типа (факультет)
+ */
 public class FacDAOpg implements FacDAO{
     private final ConnectionDB connectionDB;
     private final Connection connection;
@@ -16,6 +19,10 @@ public class FacDAOpg implements FacDAO{
         connection = connectionDB.getConnection();
     }
 
+    /**
+     * Сохранение в БД
+     * @param fac
+     */
     @Override
     public void saveData(Fac fac) {
         PreparedStatement ps = null;
@@ -33,6 +40,10 @@ public class FacDAOpg implements FacDAO{
         }
     }
 
+    /**
+     * Получение списка сущностей из БД
+     * @return
+     */
     @Override
     public List<Fac> getDataList() {
         List<Fac> facList = new ArrayList<>();

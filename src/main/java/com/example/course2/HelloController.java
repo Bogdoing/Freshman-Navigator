@@ -6,6 +6,7 @@ import com.example.course2.Chat.User;
 import com.example.course2.Chat.UserF;
 import com.example.course2.dao.facPac.FacDAO;
 import com.example.course2.dao.facPac.FacF;
+import com.example.course2.dao.keepPac.Keeps;
 import com.example.course2.dao.messagePac.MassageF;
 import com.example.course2.dao.messagePac.MessageDAO;
 import com.example.course2.dao.messagePac.MessageDAOlist;
@@ -39,6 +40,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Контроллер главного окна программы
+ */
 public class HelloController implements Initializable {
     @FXML
     private Label welcomeText;
@@ -89,10 +93,6 @@ public class HelloController implements Initializable {
 
 //    WebEngine engine = webView.getEngine();
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
     protected void saveData() {

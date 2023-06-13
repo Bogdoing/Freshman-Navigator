@@ -3,6 +3,9 @@ package com.example.course2.dao.tablePac;
 import com.example.course2.dao.facPac.FacDAO;
 import com.example.course2.dao.facPac.FacDAOpg;
 
+/**
+ * Класс реализующий паттерн DAO для сущностей типа Table
+ */
 public class TableF {
 
     private TableDAO tableDAO = null;
@@ -10,6 +13,11 @@ public class TableF {
     public static final String I_kf = "КФ";
     public static final String I_dr = "ДР";
 
+    /**
+     * Возвращает класс сущности Table в зависимости от входных данных
+     * @param Type
+     * @return
+     */
     public TableDAO getTableDAO(String Type) {
         if (Type.equalsIgnoreCase(I_fk)) {
             tableDAO = new TableFK();

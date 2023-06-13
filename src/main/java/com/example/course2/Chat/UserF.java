@@ -2,7 +2,16 @@ package com.example.course2.Chat;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Клас реализующий паттерн DAO для пользователей типа USER
+ */
 public class UserF {
+
+    /**
+     * Принимает название юзера и возвращает класс нужного юзера
+     * @param userString
+     * @return
+     */
     public User getUser(String userString) {
         User user = null;
         if (userString == "Curator"){

@@ -11,6 +11,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * Класс создающий user-a типа Server
+ * Запускает сервер на определённоп порте
+ */
 public class Server implements User {
     ServerSocket serverSocket;
     Socket clientSocket ;
@@ -19,6 +23,11 @@ public class Server implements User {
     Scanner sc = new Scanner(System.in);
     boolean pass;
 
+    /**
+     * Создаёт и запускает сервер
+     * @param textArea
+     * @param textField
+     */
     @Override
     public void create(TextArea textArea, TextField textField) {
         textArea.appendText("\nНачинайте общение");
@@ -36,12 +45,24 @@ public class Server implements User {
         }
 
     }
+
+    /**
+     * Проверяет правильность введённого пароля пользователем
+     * @param textField
+     * @return
+     */
     @Override
     public boolean SinIn(TextField textField){
         if (textField.getText().equals("serv"))
             return true;
         return false;
     }
+
+    /**
+     * Отвечает за отправку сообшений
+     * @param textField
+     * @param textArea
+     */
     @Override
     public void sender(TextField textField, TextArea textArea){
         Thread sender= new Thread(new Runnable() {
@@ -62,6 +83,10 @@ public class Server implements User {
         });
         sender.start();
     }
+
+    /**
+     * Отвечает за принятие сообщений в консоль
+     */
     @Override
     public void receive(){
         Thread receive= new Thread(new Runnable() {
@@ -89,6 +114,10 @@ public class Server implements User {
         receive.start();
     }
 
+    /**
+     * Отвечает за принятие сообщений в форму
+     * @param textArea
+     */
     @Override
     public void receive(TextArea textArea) {
         Thread receive= new Thread(new Runnable() {

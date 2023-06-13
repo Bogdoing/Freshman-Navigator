@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс содержащий методы работы с инфраструктурой ВУЗа типа (другое)
+ */
 public class FacDAOdr implements FacDAO{
     private final ConnectionDB connectionDB;
     private final Connection connection;
@@ -19,11 +22,19 @@ public class FacDAOdr implements FacDAO{
         connection = connectionDB.getConnection();
     }
 
+    /**
+     * Сохранение в БД
+     * @param fac
+     */
     @Override
     public void saveData(Fac fac) {
 
     }
 
+    /**
+     * Получение списка сущностей из БД
+     * @return
+     */
     @Override
     public List<Fac> getDataList() {
         List<Fac> facList = new ArrayList<>();

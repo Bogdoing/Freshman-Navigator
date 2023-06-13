@@ -5,7 +5,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Класс создающий таблицу типа (кафедра)
+ */
 public class TableKF implements TableDAO{
+
+    /**
+     * Создание тиблицы типа (кафедра)
+     * @param TVfac
+     */
     @Override
     public void getTable(TableView TVfac) {
 

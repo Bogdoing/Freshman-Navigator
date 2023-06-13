@@ -9,6 +9,4 @@ module com.example.course2 {
     exports com.example.course2.entity;
     opens com.example.course2 to javafx.fxml;
     exports com.example.course2;
-    exports com.example.course2.dao;
-    opens com.example.course2.dao to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.example.course2;
+package com.example.course2.dao.keepPac;
 
 import com.example.course2.entity.Keep;
 import com.example.course2.entity.Message;
@@ -7,12 +7,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Keeps {
+/**
+ * Класс содержит методы Keeps
+ */
+public class Keeps implements KeepsDAO {
     private Connection connection;
     private final String url = "jdbc:postgresql://localhost:5432/couremina";
     private final String username = "postgres";
     private final String password = "12qwaszx";
 
+    /**
+     * Подключение к БД
+     */
     public Keeps() {
         try {
             connection = DriverManager.getConnection(url, username, password);
@@ -21,6 +27,10 @@ public class Keeps {
         }
     }
 
+    /**
+     * Сохранение заметки
+     * @param keep
+     */
     public void saveKeep(Keep keep) {
         PreparedStatement ps = null;
         try {
@@ -35,6 +45,10 @@ public class Keeps {
         }
     }
 
+    /**
+     * Удаление заметки
+     * @param keep
+     */
     public void delKeep(Keep keep) {
         PreparedStatement ps = null;
         try {
@@ -48,6 +62,11 @@ public class Keeps {
         }
     }
 
+    /**
+     * Изменение заметки
+     * @param keepLasted
+     * @param keepNew
+     */
     public void rewriteKeep(Keep keepLasted, Keep keepNew) {
 
         System.out.println("rewriteKeep - " + keepLasted.getTitle() + " " + keepLasted.getText() + " " + keepNew.getTitle() + " " + keepNew.getText());
@@ -67,7 +86,10 @@ public class Keeps {
         }
     }
 
-
+    /**
+     * Получение актуального списка заметок из БД
+     * @return
+     */
     public List<Keep> getKeepList() {
         List<Keep> keepList = new ArrayList<>();
         PreparedStatement ps = null;
