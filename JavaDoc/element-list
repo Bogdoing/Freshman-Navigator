@@ -1,0 +1,9 @@
+module:com.example.course2
+com.example.course2
+com.example.course2.Chat
+com.example.course2.dao.facPac
+com.example.course2.dao.keepPac
+com.example.course2.dao.messagePac
+com.example.course2.dao.tablePac
+com.example.course2.db
+com.example.course2.entity
