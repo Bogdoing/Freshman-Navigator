@@ -28,7 +28,7 @@ public class MessageDAOpg implements MessageDAO {
     }
 
     /**
-     * Созранение сообщений в БД
+     * Сохранение сообщений в БД
      * @param message
      */
     @Override
@@ -62,7 +62,7 @@ public class MessageDAOpg implements MessageDAO {
 
                 message.setId( rs.getInt("id"));
                 message.setText(rs.getString("txt"));
-                message.setAuthor(rs.getString("task"));
+                message.setAuthor(rs.getString("author"));
 
 
                 messageList.add(message);
