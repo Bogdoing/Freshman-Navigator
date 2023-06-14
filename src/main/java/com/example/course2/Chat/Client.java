@@ -43,7 +43,6 @@ public class Client implements User {
         }catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     /**

@@ -18,6 +18,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Навигатор первокурсника");
         stage.setScene(scene);
         stage.show();
+        //fxmlLoader.setInitialized(true);
     }
 
     public static void main(String[] args) {
